@@ -17,12 +17,11 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-function dateSample(/* sampleActivity */) {
-  const sampleActivity = Number([...arguments][0]);
-  if (![...arguments].length) return false;
-  if (typeof [...arguments][0] !== String) return false;
-  if (![...arguments][0].length) return false;
-  if (sampleActivity <= 0 || sampleActivity > 15) return false;
+function dateSample(sampleActivity) {
+ //sampleActivity = Number([...arguments][0]);
+  if (![...sampleActivity].length) return false;
+  if (typeof [...sampleActivity] !== String) return false;
+  if (+sampleActivity <= 0 || +sampleActivity > 15) return false;
 
   let time =
     Math.log(MODERN_ACTIVITY / sampleActivity) / (0.693 / HALF_LIFE_PERIOD);

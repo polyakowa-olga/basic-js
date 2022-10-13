@@ -23,9 +23,104 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  let minesfield = [];
+
+  for (let i = 0; i < matrix.length; i++) {
+    let minesRow = [];
+    for (let j = 0; j < matrix[i].length; j++) {
+      //   top row
+      //top left
+      if (matrix[i - 1] == undefined) {
+        if (matrix[i][j - 1] == undefined) {
+          minesRow.push(
+            matrix[i][j + 1] + matrix[i + 1][j] + matrix[i + 1][j + 1]
+          );
+
+        }
+        //top right
+        else if (matrix[i][j + 1] == undefined) {
+          minesRow.push(
+            matrix[i][j - 1] + matrix[i + 1][j] + matrix[i + 1][j - 1]
+          );
+
+        }
+
+        //top interval
+        else {
+          minesRow.push(
+            matrix[i][j - 1] +
+              matrix[i][j + 1] +
+              matrix[i + 1][j + 1] +
+              matrix[i + 1][j] +
+              matrix[i + 1][j - 1]
+          );
+
+        }
+        // bottom row
+      } else if (matrix[i + 1] == undefined) {
+      //bottom left
+        if (matrix[i][j - 1] == undefined) {
+          minesRow.push(
+            matrix[i-1][j] + matrix[i - 1][j+1] + matrix[i][j + 1]
+          );
+
+        }
+        //bottom right
+        else if (matrix[i][j + 1] == undefined) {
+          minesRow.push(
+            matrix[i][j - 1] + matrix[i - 1][j] + matrix[i - 1][j - 1]
+          );
+
+        }
+                //bottom interval
+                else {
+                  minesRow.push(
+                    matrix[i][j - 1] +
+                      matrix[i][j + 1] +
+                      matrix[i - 1][j + 1] +
+                      matrix[i - 1][j] +
+                      matrix[i - 1][j - 1]
+                  );
+
+                }
+      } else {
+              //interval left
+      
+        if (matrix[i][j - 1] == undefined) {
+          minesRow.push(
+            matrix[i][j + 1] +
+            matrix[i + 1][j] + matrix[i + 1][j + 1] +
+            matrix[i - 1][j] + matrix[i - 1][j + 1]
+          );
+
+        }
+        //top right
+        else if (matrix[i][j + 1] == undefined) {
+          minesRow.push(
+            matrix[i][j - 1] +
+            matrix[i + 1][j] + matrix[i + 1][j - 1] +
+            matrix[i - 1][j] + matrix[i - 1][j - 1] 
+          );
+
+        }
+
+        //top interval
+        else {
+          minesRow.push(
+            matrix[i][j + 1] + matrix[i][j - 1] +
+            matrix[i + 1][j] + matrix[i + 1][j + 1] + matrix[i + 1][j - 1] +
+            matrix[i - 1][j] + matrix[i - 1][j + 1] + matrix[i - 1][j - 1] 
+          );
+
+        }
+      }
+
+    }
+    minesfield.push(minesRow);
+  }
+
+  return minesfield
 }
 
 module.exports = {
