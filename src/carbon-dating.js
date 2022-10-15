@@ -19,8 +19,8 @@ const HALF_LIFE_PERIOD = 5730;
  */
 function dateSample(sampleActivity) {
  //sampleActivity = Number([...arguments][0]);
-  if (![...sampleActivity].length) return false;
-  if (typeof [...sampleActivity] !== String) return false;
+  if (sampleActivity) return false;
+  if (typeof sampleActivity !== String) return false;
   if (+sampleActivity <= 0 || +sampleActivity > 15) return false;
 
   let time =
